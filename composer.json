@@ -1,6 +1,6 @@
 {
-    "name": "bersn/flit",
-    "description": "Simple MVC Progresive Php Framework",
+    "name": "bersn/scholar",
+    "description": "Simple MVC app for Schools and Universities",
     "authors": [
         {
             "name": "bersnardc",

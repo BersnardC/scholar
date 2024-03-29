@@ -1,0 +1,53 @@
+<?php
+
+namespace Scholar;
+
+class Console
+{
+    use InputCommand;
+    private static $commands = [];
+    private static $args;
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        self::$args = self::arguments();
+    }
+
+    public function run()
+    {
+        if (count(self::$args) < 2) {
+            echo "Scholar message: No method to run\n";
+            return;
+        }
+        $method = self::$args[1];
+        $pos = self::match($method);
+        if ($pos === false) {
+            echo "Scholar error: Method $method not registered\n";
+            return;
+        }
+        $data = self::$commands[$method];
+        $class = "App\\Console\\Commands\\{$data['class']}";
+        if (!class_exists($class)) {
+            echo "Scholar error: class $class no exist\n";
+            return;
+        }
+        $class = new $class();
+        $class->handle(self::$args);
+    }
+
+    public function register(string $command, string $class): void
+    {
+        self::$commands[$command] = ['class' => $class, "params" => ""];
+    }
+
+    private function match(string $command)
+    {
+        $pos = array_search($command, array_keys(self::$commands));
+        return $pos;
+    }
+}

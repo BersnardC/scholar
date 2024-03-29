@@ -1,0 +1,17 @@
+{
+    "name": "bersn/flit",
+    "description": "Simple MVC Progresive Php Framework",
+    "authors": [
+        {
+            "name": "bersnardc",
+            "email": "bersnardc@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Scholar\\": "system/"
+        }
+    },
+    "require": {}
+}

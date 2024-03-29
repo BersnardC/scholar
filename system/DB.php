@@ -14,6 +14,10 @@ class DB
         self::connect();
     }
 
+    /**
+     * Set a new connection DB
+     * @return void
+     */
     private static function connect()
     {
         if (self::$connection) return self::$connection;
@@ -26,11 +30,20 @@ class DB
         }
     }
 
+    /**
+     * Return connection instance
+     * @return mysqli instance
+     */
     protected static function getConnection()
     {
         return self::$connection;
     }
 
+    /**
+     * Run a new query
+     * @param string $query Query to run
+     * @return object
+     */
     public static function query(string $query)
     {
         self::connect();
@@ -38,16 +51,28 @@ class DB
         return $result;
     }
 
-    public static function parseCreateValues(array $str_values): string
+    /**
+     * Parse values from array for insert query
+     * Used in create method
+     * @param array $data_values Values to insert
+     * @return string
+     */
+    public static function parseCreateValues(array $data_values): string
     {
         $values = "";
-        foreach($str_values as $val) {
+        foreach($data_values as $val) {
             if($values != '') $values .= ', ';
             $values .= gettype($val) == 'string' ? "'$val'" : "$val";
         }
         return $values;
     }
 
+    /**
+     * Parse values from array for update query
+     * Used in update method
+     * @param array $data Values to update
+     * @return string
+     */
     public static function parseUpdateValues(array $data): string
     {
         $values = "";
@@ -59,6 +84,12 @@ class DB
         return $values;
     }
 
+    /**
+     * Parse values from array for filters where
+     * Used in query where
+     * @param array $filters Values to filters
+     * @return string
+     */
     public static function parseFilters(array $filters): string
     {
         $str_filters = "";

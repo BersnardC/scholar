@@ -13,6 +13,12 @@ class Model extends DB
         parent::__construct();
     }
 
+    /**
+     * Get data for table
+     * @param string $str_select Values to select
+     * @param array $filters Filters to apply where
+     * @return array
+     */
     public function get(string $str_select = '*', array $filters = [])
     {
         $query = "SELECT $str_select FROM {$this->table}";
@@ -28,6 +34,11 @@ class Model extends DB
         return $data;
     }
 
+    /**
+     * Create a new record in table
+     * @param array $data Data for record
+     * @return null|array
+     */
     public function create(array $data)
     {
         $keys = implode(',', array_keys($data));
@@ -41,6 +52,11 @@ class Model extends DB
         return null;
     }
 
+    /**
+     * Create a bulk insert in table
+     * @param array $data Data for save
+     * @return integer
+     */
     public function bulkInsert(array $data)
     {
         $keys = implode(',', array_keys($data[0]));
@@ -55,6 +71,12 @@ class Model extends DB
         return parent::getConnection()->affected_rows;
     }
 
+    /**
+     * Update record table
+     * @param array $data Data to update
+     * @param array $filters Filters to apply where
+     * @return integer
+     */
     public function update(array $data, array $filters = [])
     {
         $values = $this->parseUpdateValues($data);
@@ -67,6 +89,11 @@ class Model extends DB
         return parent::getConnection()->affected_rows;
     }
 
+    /**
+     * Delete record of table
+     * @param array $filters Filter to apply where
+     * @return integer
+     */
     public function delete(array $filters = [])
     {
         $query = "DELETE FROM {$this->table}";

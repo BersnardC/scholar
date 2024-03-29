@@ -6,6 +6,11 @@ use Scholar\DB;
 
 class Search
 {
+    /**
+     * Start the command 
+     * @param string $filter Filter to search
+     * @return bool|void
+     */
     public static function start($filter)
     {
         $data = self::doSearch($filter);
@@ -27,6 +32,11 @@ class Search
         }
     }
 
+    /**
+     * Method for run search
+     * @param string $filter Filter to search
+     * @return bool|array
+     */
     public static function doSearch($filter)
     {
         if(strlen($filter) < 3) {

@@ -18,6 +18,12 @@ class Console
         self::$args = self::arguments();
     }
 
+    /**
+     * Run a new command
+     * This method check if command exists in avalibale commands array and call the Class 
+     * for execute instructions
+     * @return void
+     */
     public function run()
     {
         if (count(self::$args) < 2) {
@@ -40,6 +46,12 @@ class Console
         $class->handle(self::$args);
     }
 
+    /**
+     * Register a new command 
+     * @param string $command Name of command
+     * @param string $class Class to Call
+     * @return void
+     */
     public function register(string $command, string $class): void
     {
         self::$commands[$command] = ['class' => $class, "params" => ""];

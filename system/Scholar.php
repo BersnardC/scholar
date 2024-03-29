@@ -2,10 +2,15 @@
 
 namespace Scholar;
 
+
 class Scholar
 {
     use Router;
 
+
+    /**
+     * Core Class Method for MVC.
+     */
     public function run()
     {
         $route_match = $this->match($this->method(), $this->path());
@@ -32,6 +37,11 @@ class Scholar
         return;
     }
 
+    /**
+     * MVC match method and url.
+     * @param string $method A method of request
+     * @param string $url Path of url
+     */
     private function match($method, $url)
     {
         foreach (self::$urls[$method] as $uri => $call) {

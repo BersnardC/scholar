@@ -8,6 +8,11 @@ use App\Models\Search as SearchModel;
 class Search extends Command
 {
     protected $params = "{to_search}";
+
+    /**
+     * Body of the command
+     * @return void
+     */
     public function handle()
     {
         $val = $this->param('to_search');

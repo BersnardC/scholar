@@ -25,7 +25,6 @@ class Model extends DB
         while ($row = $result->fetch_assoc()) {
             array_push($data, $row);
         }
-        print_r($data);
         return $data;
     }
 

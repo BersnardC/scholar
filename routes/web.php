@@ -3,8 +3,8 @@
 use Scholar\Scholar;
 
 $app = new Scholar();
-$app::get('/', 'HomeController', 'test');
-$app::get('/some', 'HomeController', 'some');
-$app::post('/', 'HomeController', 'test');
+$app::get('/', 'HomeController', 'welcome');
+$app::get('/classes', 'HomeController', 'getClasses');
+$app::get('/exams', 'HomeController', 'getExams');
 $app::post('/dev', 'HomeController', 'dev');
 $app->run();
